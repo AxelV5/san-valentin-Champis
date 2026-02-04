@@ -9,11 +9,11 @@
     body {
       margin: 0;
       height: 100vh;
-      background-color: #ffd6e8; /* baby pink */
+      background-color: #ffd6e8;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       overflow: hidden;
     }
 
@@ -31,7 +31,7 @@
     }
 
     .photo-frame {
-      background-color: #fff2b2; /* baby yellow */
+      background-color: #fff2b2;
       padding: 12px;
       border-radius: 20px;
       display: inline-block;
@@ -46,7 +46,7 @@
 
     .buttons {
       position: relative;
-      height: 150px;
+      height: 160px;
     }
 
     button {
@@ -55,9 +55,9 @@
       font-size: 16px;
       border-radius: 14px;
       cursor: pointer;
-      transition: all 0.25s ease;
       position: absolute;
       white-space: nowrap;
+      transition: transform 0.25s ease;
     }
 
     #yesBtn {
@@ -72,7 +72,7 @@
       background-color: #d3d3d3;
       color: #333;
       left: 20%;
-      top: 90px;
+      top: 100px;
     }
   </style>
 </head>
@@ -92,33 +92,34 @@
   </div>
 
   <script>
-    const noBtn = document.getElementById('noBtn');
-    const yesBtn = document.getElementById('yesBtn');
-    const buttonsArea = document.querySelector('.buttons');
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const buttonsArea = document.querySelector(".buttons");
 
     let yesScale = 1;
 
     function moveNoButton() {
-      const areaRect = buttonsArea.getBoundingClientRect();
-      const btnRect = noBtn.getBoundingClientRect();
+      const area = buttonsArea.getBoundingClientRect();
+      const btn = noBtn.getBoundingClientRect();
 
-      const maxX = areaRect.width - btnRect.width;
-      const maxY = areaRect.height - btnRect.height;
+      const maxX = area.width - btn.width;
+      const maxY = area.height - btn.height;
 
-      const randomX = Math.random() * maxX;
-      const randomY = Math.random() * maxY;
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
 
-      noBtn.style.left = randomX + 'px';
-      noBtn.style.top = randomY + 'px';
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
 
-      yesScale += 0.15;
+      yesScale += 0.18;
       yesBtn.style.transform = `translateX(-50%) scale(${yesScale})`;
     }
 
-    noBtn.addEventListener('mouseenter', moveNoButton);
-    noBtn.addEventListener('touchstart', moveNoButton);
+    // 👉 SOLO eventos para celular (tap)
+    noBtn.addEventListener("touchstart", moveNoButton);
+    noBtn.addEventListener("click", moveNoButton);
 
-    yesBtn.addEventListener('click', () => {
+    yesBtn.addEventListener("click", () => {
       document.body.innerHTML = `
         <div style="
           height:100vh;
@@ -130,7 +131,7 @@
           color:#5a2a3a;
           text-align:center;
           padding:20px;">
-          💖 Sabía que dirías que sí Champis, Te amo Champiñón 💖<br><br>
+          💖 Sabía que dirías que sí Champis 💖<br><br>
           Feliz San Valentín 🌹
         </div>
       `;
