@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>San Valentine 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #ffd6e8; /* baby pink */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h1 {
+      color: #5a2a3a;
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .photo-frame {
+      background-color: #fff2b2; /* baby yellow */
+      padding: 12px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      max-width: 260px;
+      border-radius: 15px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 140px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 20px;
+      font-size: 16px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: absolute;
+      white-space: nowrap;
+    }
+
+    #yesBtn {
+      background-color: #ff6fa5;
+      color: white;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+    }
+
+    #noBtn {
+      background-color: #d3d3d3;
+      color: #333;
+      left: 20%;
+      top: 80px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>would you be my san valentine? 💘</h1>
+
+    <div class="photo-frame">
+      <img src="imagen.jpeg" alt="Cute image">
+    </div>
+
+    <div class="buttons">
+      <button id="yesBtn">sí, te amo 💕</button>
+      <button id="noBtn">no</button>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    let yesScale = 1;
+
+    function moveNoButton() {
+      const padding = 20;
+      const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+      const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      noBtn.style.left = randomX + 'px';
+      noBtn.style.top = randomY + 'px';
+
+      yesScale += 0.12;
+      yesBtn.style.transform = `translateX(-50%) scale(${yesScale})`;
+    }
+
+    noBtn.addEventListener('touchstart', moveNoButton);
+    noBtn.addEventListener('mouseover', moveNoButton);
+
+    yesBtn.addEventListener('click', () => {
+      alert('💖 Sabía que dirías que sí 💖');
+    });
+  </script>
+
+</body>
+</html>
