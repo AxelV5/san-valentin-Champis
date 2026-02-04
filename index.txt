@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>San Valentine 💖</title>
 
   <style>
@@ -46,7 +46,7 @@
 
     .buttons {
       position: relative;
-      height: 140px;
+      height: 150px;
     }
 
     button {
@@ -72,17 +72,17 @@
       background-color: #d3d3d3;
       color: #333;
       left: 20%;
-      top: 80px;
+      top: 90px;
     }
   </style>
 </head>
-<body>
 
+<body>
   <div class="container">
     <h1>would you be my san valentine? 💘</h1>
 
     <div class="photo-frame">
-      <img src="imagen.jpeg" alt="Cute image">
+      <img src="imagen.jpeg" alt="Cute image" />
     </div>
 
     <div class="buttons">
@@ -94,12 +94,16 @@
   <script>
     const noBtn = document.getElementById('noBtn');
     const yesBtn = document.getElementById('yesBtn');
+    const buttonsArea = document.querySelector('.buttons');
+
     let yesScale = 1;
 
     function moveNoButton() {
-      const padding = 20;
-      const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-      const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+      const areaRect = buttonsArea.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      const maxX = areaRect.width - btnRect.width;
+      const maxY = areaRect.height - btnRect.height;
 
       const randomX = Math.random() * maxX;
       const randomY = Math.random() * maxY;
@@ -107,17 +111,30 @@
       noBtn.style.left = randomX + 'px';
       noBtn.style.top = randomY + 'px';
 
-      yesScale += 0.12;
+      yesScale += 0.15;
       yesBtn.style.transform = `translateX(-50%) scale(${yesScale})`;
     }
 
+    noBtn.addEventListener('mouseenter', moveNoButton);
     noBtn.addEventListener('touchstart', moveNoButton);
-    noBtn.addEventListener('mouseover', moveNoButton);
 
     yesBtn.addEventListener('click', () => {
-      alert('💖 Sabía que dirías que sí 💖');
+      document.body.innerHTML = `
+        <div style="
+          height:100vh;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          background:#ffd6e8;
+          font-size:26px;
+          color:#5a2a3a;
+          text-align:center;
+          padding:20px;">
+          💖 Sabía que dirías que sí 💖<br><br>
+          Feliz San Valentín 🌹
+        </div>
+      `;
     });
   </script>
-
 </body>
 </html>
